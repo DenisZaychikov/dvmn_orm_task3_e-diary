@@ -2,11 +2,6 @@ from datacenter.models import Schoolkid, Mark, Chastisement, Commendation, Lesso
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 import random
 
-
-class SubjectNameWrongFormat(Exception):
-    pass
-
-
 commendation_variants = [
     'Молодец!', 'Отлично!', 'Хорошо!',
     'Гораздо лучше, чем я ожидал!', 'Ты меня приятно удивил!', 'Великолепно!',
@@ -46,7 +41,7 @@ def create_commendation(schoolkid, subject_name):
     final_lesson = Lesson.objects.filter(subject__title=subject_name, year_of_study=year_of_study,
                                          group_letter=group_letter).order_by('-date').first()
     if final_lesson is None:
-        raise SubjectNameWrongFormat('Неправильный формат записи предмета - ' + subject_name)
+        print('Неправильный формат записи предмета -', subject_name)
 
     subject = final_lesson.subject
     teacher = final_lesson.teacher
