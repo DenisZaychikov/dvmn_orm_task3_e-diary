@@ -18,7 +18,7 @@
 `db_hack.create_commendation(schoolkid, subject_name)` - В качестве аргументов принимает учетную запись ученика и строку с наименованием предмета. Для указанного ученика создает похвалу.
 
 ## 3. Пример использования:
-```
+```python
 $ python manage.py shell
 >>> import db_hack
 >>> schoolkid = db_hack.get_schoolkid('Петров Иван') 
