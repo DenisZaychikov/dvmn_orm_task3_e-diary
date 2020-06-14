@@ -40,11 +40,11 @@ def create_commendation(schoolkid, subject_name):
     group_letter = schoolkid.group_letter
     final_lesson = Lesson.objects.filter(subject__title=subject_name, year_of_study=year_of_study,
                                          group_letter=group_letter).order_by('-date').first()
-    if final_lesson is None:
+    if not final_lesson:
         print('Неправильный формат записи предмета -', subject_name)
-    else:
-        subject = final_lesson.subject
-        teacher = final_lesson.teacher
-        date = final_lesson.date
-        text = random.choice(commendation_variants)
-        Commendation.objects.create(text=text, created=date, schoolkid=schoolkid, subject=subject, teacher=teacher)
+        raise SystemExit()
+    subject = final_lesson.subject
+    teacher = final_lesson.teacher
+    date = final_lesson.date
+    text = random.choice(commendation_variants)
+    Commendation.objects.create(text=text, created=date, schoolkid=schoolkid, subject=subject, teacher=teacher)
